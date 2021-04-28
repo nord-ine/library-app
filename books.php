@@ -55,55 +55,65 @@
             <div> <?php require 'header.php';?> </div>
             
             <div id="main" >
-                <h1 style="text-align: center; color:firebrick">Nos Livres</h1>
+                <h1 style="text-align: center; color:firebrick">Nos Livres dfgfsdf</h1>
                 <div class="book_list">
-                    <div class=book>
-                    <div>
-                    <?php
+                <?php
+                require 'dbConnection.php';
+                $sth= $dbco->prepare("SELECT * FROM books");
+                $sth->execute();
+                $resultat= $sth->fetchAll(PDO::FETCH_ASSOC);
 
-                    // require 'dbConnection.php';
-                    // $sth= $dbco->prepare("SELECT * FROM books");
-                    // $sth->execute();
-                    // $resultat= $sth->fetchAll(PDO::FETCH_ASSOC);
-
-                    // echo'<pre>';
-                    // print_r($resultat);echo'</pre>'
-
-                    // ?>
-                    </div>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=book>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=book>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=book>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
+              
+                foreach ($resultat as &$book) {
+                    ?> 
+                    <div class="book">
+                    <img class="book_image" src="data:image/jpeg;base64,<?php echo base64_encode($book['image'])?>" width="345px" height="150px">
+                    <p class="book_title"><?php echo $book['title']?></p>
+                    <p class="book_text"><b>description:</b><?php echo $book['description']?></p>
+                    <p class="book_text"><b> auteur : </b><?php echo $book['author']?></p>
+                    <p class="book_text"><b> année de publication :</b><?php echo $book['year']?></p>
+                    <p class="book_text"><b> prix:</b><?php echo $book['price']?>$</p>
+                     </div>
+                     <?php
+                     }       
+                    ?>
 
                 </div>
+                <!-- <div class="book_list">
+                    <div class=book>
+                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
+                        <p class="book_title">How to take smart notes</p>
+                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
+                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
+                        <p class="book_text"><b> année de publication :</b> 2018</p>
+                        <p class="book_text"><b> prix:</b> 20$</p>
+                    </div>
+                    <div class=book>
+                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
+                        <p class="book_title">How to take smart notes</p>
+                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
+                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
+                        <p class="book_text"><b> année de publication :</b> 2018</p>
+                        <p class="book_text"><b> prix:</b> 20$</p>
+                    </div>
+                    <div class=book>
+                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
+                        <p class="book_title">How to take smart notes</p>
+                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
+                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
+                        <p class="book_text"><b> année de publication :</b> 2018</p>
+                        <p class="book_text"><b> prix:</b> 20$</p>
+                    </div>
+                    <div class=book>
+                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
+                        <p class="book_title">How to take smart notes</p>
+                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
+                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
+                        <p class="book_text"><b> année de publication :</b> 2018</p>
+                        <p class="book_text"><b> prix:</b> 20$</p>
+                    </div>
+
+                </div> -->
             </div>
             <div id="footer"><?php require 'footer.php';?></div>
         </div>   

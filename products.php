@@ -32,7 +32,7 @@
         }
         .product{
             margin:10px;
-            height: 380px;
+            height: 350px;
             width:300px;
             border-radius: 4px;
             box-shadow: 0 20px 40px -14px ;
@@ -57,51 +57,24 @@
             <div id="main" >
                 <h1 style="text-align: center; color:firebrick">Nos Produits</h1>
                 <div class="product_list">
-                    <div class=product>
-                        <img class="product_image" src='images/atomichabits.jpg' width="297px" height="200px">
-                        <p class="product_name">calculatrice</p>
-                        <p class="product_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="product_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=product>
-                        <img class="product_image" src='images/atomichabits.jpg' width="297px" height="200px">
-                        <p class="product_name">calculatrice</p>
-                        <p class="product_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="product_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=product>
-                        <img class="product_image" src='images/atomichabits.jpg' width="297px" height="200px">
-                        <p class="product_name">calculatrice</p>
-                        <p class="product_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="product_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=product>
-                        <img class="product_image" src='images/atomichabits.jpg' width="297px" height="200px">
-                        <p class="product_name">calculatrice</p>
-                        <p class="product_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="product_text"><b> prix:</b> 20$</p>
-                    </div>
+                <?php
+                require 'dbConnection.php';
+                $sth= $dbco->prepare("SELECT * FROM products");
+                $sth->execute();
+                $resultat= $sth->fetchAll(PDO::FETCH_ASSOC);
 
-                    <div class=product>
-                        <img class="product_image" src='images/atomichabits.jpg' width="297px" height="200px">
-                        <p class="product_name">calculatrice</p>
-                        <p class="product_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="product_text"><b> prix:</b> 20$</p>
-                    </div>
-
-                    <div class=product>
-                        <img class="product_image" src='images/atomichabits.jpg' width="297px" height="200px">
-                        <p class="product_name">calculatrice</p>
-                        <p class="product_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="product_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=product>
-                        <img class="product_image" src='images/atomichabits.jpg' width="297px" height="200px">
-                        <p class="product_name">calculatrice</p>
-                        <p class="product_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="product_text"><b> prix:</b> 20$</p>
-                    </div>
-
+              
+                foreach ($resultat as &$product) {
+                    ?> 
+                    <div class="product">
+                    <img class="product_image" src="data:image/jpeg;base64,<?php echo base64_encode($product['image'])?>" width="297px" height="200px">
+                    <p class="product_name"><?php echo $product['title']?></p>
+                    <p class="product_text"><b>description:</b><?php echo $product['description']?></p>
+                    <p class="product_text"><b> prix:</b><?php echo $product['price']?>$</p>
+                     </div>
+                     <?php
+                     }       
+                    ?>
                 </div>
             </div>
             <div id="footer"><?php require 'footer.php';?></div>

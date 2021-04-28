@@ -1,9 +1,3 @@
-<?php
-
-
-?>
-
-
 
 <!DOCTYPE html>
 <html lang="en" style="margin-top:50px"> 

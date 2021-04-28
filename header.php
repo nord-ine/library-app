@@ -40,7 +40,7 @@
                     <a href="index.php"><li>accueil</li></a> 
                     <a href="products.php"><li>Produit</li></a> 
                     <a href="books.php"><li>Livres</li></a> 
-                    <a href="accueil.html"><li>Achats</li></a> 
+                    <a href="clientInfo.php"><li>Achats</li></a> 
                     <a href="accueil.html"><li>Recherche</li></a> 
                     <a href="accueil.html"><li>update</li></a> 
                 </ul>
