@@ -1,14 +1,15 @@
 <?php
-$fn  = $_POST['fn'];
-$str = $_POST['str'];
+require 'dbConnection.php';
 
-echo "heuuuu";
+echo "ready \n";
+$add_user_req=$dbco->prepare("INSERT INTO client(firstName,lastName,email,dateOfBirth) VALUES(:firstName,:lastName,:email,:dateOfBirth)");
 
-echo $fn;
-echo $str;
-print_r($_POST['fn']) ;
-if(isset($_POST['fn'])){
-    echo "here \n";
-    print_r($_POST['fn']) ;
-}
+$add_user_req->bindValue(':firstName',$firstName);
+$add_user_req->bindValue(':lastName',$firstName);
+$add_user_req->bindValue(':email',$email);
+$add_user_req->bindValue(':dateOfBirth',$dateOfBirth);
+$results =   $add_user_req->execute();
+
+echo $results;
+
 ?>

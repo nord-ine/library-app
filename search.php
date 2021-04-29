@@ -1,16 +1,52 @@
 <?php
+require 'dbConnection.php';
+
+require 'user.php';
 
 if(isset($_POST['submit'])){
-
-    //var_dump(json_decode($_POST['user_choices']) );
-
-
-}    
-
     session_start();
-    $user_data = $_SESSION['userData'];
+    $user_choices = json_decode($_POST['user_choices'],true);
 
-    require 'dbConnection.php';
+    $_SESSION['userData']->items=$user_choices;
+
+    //print_r($_SESSION['userData']);
+    $user_email = $_SESSION['userData']->email;
+    //echo $user_email;
+    $user_req= $dbco->prepare("SELECT ID FROM admins WHERE email='$user_email' ");
+    $user_req->execute();
+    $returned_data  = $user_req->fetchAll();
+
+     if(count($returned_data)>=1){
+        $_SESSION['userData']->items['discount']=15;
+     } 
+     else{
+        $user_req= $dbco->prepare("SELECT ID FROM client WHERE email='$user_email' ");
+        $user_req->execute();
+        $returned_data  = $user_req->fetchAll();
+        if(count($returned_data)>=1){
+            $_SESSION['userData']->items['discount']=10;
+         }
+         else{
+            $firstName = $_SESSION['userData']->firstName;
+            $lastName = $_SESSION['userData']->lastName;
+            $email = $_SESSION['userData']->email;
+            $dateOfBirth = $_SESSION['userData']->dateOfBirth;
+
+                $add_user_req=$dbco->prepare("INSERT INTO `client` (`ID`, `fistName`, `lastName`, `email`, `dateOfBirth`) VALUES (NULL, '$firstName', '$lastName', '$email', '$dateOfBirth');");
+                $add_user_req->execute();
+                //$add_user_req->debugDumpParams();
+                //echo "ajouter a latble \n";
+                $_SESSION['userData']->items['discount']=0;
+            }
+
+              
+         }
+         //print_r($_SESSION['userData']);
+         header("Location: summary.php");
+}
+ 
+    session_start();
+    
     $books_req= $dbco->prepare("SELECT * FROM books where quantity>0");
     $books_req->execute();
     $book_list= $books_req->fetchAll(PDO::FETCH_ASSOC);
@@ -19,22 +55,8 @@ if(isset($_POST['submit'])){
     $product_req->execute();
     $product_list= $product_req->fetchAll(PDO::FETCH_ASSOC);
 
-    $client_books=[];
-    $client_products=[];
-
-    // if(isset($_POST['submit_book'])){	
-    // // check email
-    //      array_push($client_books,$_POST['book_choice']) ;
-
-    //      foreach($client_books as &$cb){
-    //          echo $$cb['title'];
-    //      }
-    // }
-
-    // foreach ($book_list as &$b){
-    //     echo $b['ID'];
-    // }
-
+    $_SESSION['book_list']=$book_list;
+    $_SESSION['product_list']=$product_list;
    
 ?>
 <!DOCTYPE html>
@@ -98,20 +120,13 @@ if(isset($_POST['submit'])){
                 <h1 style="text-align: center; color:firebrick">Recherche</h1>
                 <div id ="content">
                     <div id="user_data_div">
-                        <p> <b>prename : </b><?php echo $user_data['firstName'] ?></p>
-                        <p><b>nom : </b><?php echo $user_data['lastName'] ?></p>
-                        <p><b>email : </b><?php echo $user_data['email'] ?></p>
-                        <p><b>date de naissance : </b><?php echo $user_data['date'] ?></p>
+                        <p> <b>prename : </b><?php echo $_SESSION['userData']->firstName ?></p>
+                        <p><b>nom : </b><?php echo $_SESSION['userData']->lastName ?></p>
+                        <p><b>email : </b><?php echo $_SESSION['userData']->email?></p>
+                        <p><b>date de naissance : </b><?php echo $_SESSION['userData']->dateOfBirth?></p>
                     </div>
                     <div id="product_selection_div">
                         <h3>selectionner les livres et produits que vous voulez réserver</h3>
-                        <div>
-                           <label for="site-items">chercher un livre ou un produit</label>
-                            <input type="search" id="items" name="q">
-
-                            <button id="search_items_button">Search</button>
-
-                        </div>
                         <div class="menu">
                             <select name="book_choice" id="book_choice">
                                 <?php
@@ -136,7 +151,7 @@ if(isset($_POST['submit'])){
                          
                             <form method="post" action="search.php">
                             <input type="hidden" name="user_choices" id="user_choices"></input>
-                            <input type="submit" id="submit_button" name="submit" value="valider">
+                            <input type="submit" id="submit_button" name="submit" value="valider vos choix">
                             </form>
                             </div>
                             

@@ -1,5 +1,5 @@
 <?php
-
+require 'user.php';
 $errors = ['email'=>"",'firstName'=>"",'lastName'=>"",'date'=>""];
 $inputvalues=['email'=>"",'firstName'=>"me",'lastName'=>"",'date'=>""];
 
@@ -36,7 +36,8 @@ if(isset($_POST['submit'])){
     } else {
         //echo 'form is valid';
         session_start();
-        $_SESSION['userData'] = $inputvalues;
+        $_SESSION['userData'] = new User($inputvalues['firstName'],$inputvalues['lastName'],$inputvalues['email'],$inputvalues['date']);
+
         //print_r($inputvalues);
         header('Location: search.php');
     }
