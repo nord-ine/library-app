@@ -41,7 +41,7 @@
                     <a href="products.php"><li>Produit</li></a> 
                     <a href="books.php"><li>Livres</li></a> 
                     <a href="clientInfo.php"><li>Achats</li></a> 
-                    <a href="update.php"><li>update</li></a> 
+                    <a href="admin.php"><li>admin</li></a> 
                 </ul>
             </nav>
 </div>

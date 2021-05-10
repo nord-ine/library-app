@@ -79,41 +79,7 @@
                     ?>
 
                 </div>
-                <!-- <div class="book_list">
-                    <div class=book>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=book>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=book>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
-                    <div class=book>
-                        <img class="book_image" src='images/atomichabits.jpg' width="345px" height="150px">
-                        <p class="book_title">How to take smart notes</p>
-                        <p class="book_text"><b>description:</b>descxcskdcmlksddfsdhfsdfjsdhfgshdfgsdjkhfgdjhfgsdkhjfgfhsddfvdfvdfc,mqlkvdfvdvdnkldnksncqksdncmlsnc</p>
-                        <p class="book_text"><b> auteur : </b>ahrens Sonke</p>
-                        <p class="book_text"><b> année de publication :</b> 2018</p>
-                        <p class="book_text"><b> prix:</b> 20$</p>
-                    </div>
 
-                </div> -->
             </div>
             <div id="footer"><?php require 'footer.php';?></div>
         </div>   

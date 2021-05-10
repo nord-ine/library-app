@@ -32,7 +32,7 @@
             <div> <?php require 'header.php';?> </div>
             
             <div id="main" >
-                <h1 style="text-align: center; color:firebrick">Bienvenu à la libraire de mars</h1>
+                <h1 style="text-align: center; color:firebrick">Bienvenue à la Librairie de dauphine</h1>
                 <div 
                     style="display:flex;
                         flex-direction:row;

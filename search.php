@@ -108,6 +108,25 @@ if(isset($_POST['submit'])){
             justify-content:center;
             
         }
+        input{
+            width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+        }
+        button{
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 
    
@@ -154,7 +173,6 @@ if(isset($_POST['submit'])){
                             <input type="submit" id="submit_button" name="submit" value="valider vos choix">
                             </form>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -176,10 +194,12 @@ var clientItems={
 
     add_book_button.addEventListener('click', function(event){
         let book = document.getElementById('book_choice').value;
+
         clientItems.books.push(parseInt(book));
         input.value= JSON.stringify(clientItems);
 
-        console.log(input.value);
+        //console.log(input.value);
+        
     });
 
    let add_product_button = document.getElementById('add_product_button');
@@ -205,20 +225,6 @@ var clientItems={
         //console.log(book_options);
         //console.log(product_options);
     });
-    // let validate_items_button = document.getElementById('validate_items_button');
-    // validate_items_button.addEventListener('click',  function(event){
-    //     console.log("in ajax");
-    //        $.ajax({
-    //             url: 'search.php',
-    //             type: 'post',
-    //             data: {items:JSON.stringify(clientItems)},
-    //             dataType: 'JSON',
-    //             success: function(response){
-    //                 console.log("success");
-    //             }
-    //         });
-    // });
-   // console.log(ele.value);
 
 </script>
 </body>
